@@ -1,0 +1,9 @@
+<%- include ('adminlook'); %>
+
+<div class="container">
+	<h1 class="mb-4"> Edit Event</h1>
+	<form action="/admin/event/<%= event.id; %>?_method=PUT" Method="POST">
+		<%- include ('_eventform'); %>
+
+		</form>
+</div>

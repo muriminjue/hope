@@ -1,0 +1,427 @@
+ <%- include ('_layouts/websitehead'); %>
+ 
+
+	<section class="hero-wrap js-fullheight">
+		<div class="home-slider js-fullheight owl-carousel">
+			<div class="slider-item js-fullheight" style="background-image:url(images/group-photo.jpg);">
+				<div class="overlay"></div>
+				<div class="container">
+					<div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+						<div class="col-md-8 ftco-animate">
+							<div class="text mt-md-5 w-100 text-center">
+								<h2>Welcome to</h2>
+								<h1 class="mb-3">HOPE CITY BIBLE CHURCH</h1>
+								<p class="mb-4 pb-3">FOCUSING UPWARD. NURTURING INWARD. ENGAGING OUTWARD.</p>
+								<!--<p class="mb-0"><a href="#" class="btn btn-primary py-3 px-2 px-md-4">Become A Volunteer</a></p>-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="slider-item js-fullheight" style="background-image:url(images/church-hall.jpg);">
+				<div class="overlay"></div>
+				<div class="container">
+					<div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+						<div class="col-md-8 ftco-animate">
+							<div class="text mt-md-5 w-100 text-center">
+								<h2>Welcome to</h2>
+								<h1 class="mb-3">HOPE CITY BIBLE CHURCH</h1>
+								<p class="mb-4 pb-3">FOCUSING UPWARD. NURTURING INWARD. ENGAGING OUTWARD.</p>
+								<!--<p class="mb-0"><a href="#" class="btn btn-primary py-3 px-2 px-md-4">Become A Volunteer</a></p>-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="ftco-section ftco-no-pb ftco-no-pt">
+		<div class="container">
+			<div class="row no-gutters">
+				<div class="col-md-8 d-flex">
+					<div class="row no-gutters">
+						<div class="col-md-4">
+							<div class="services-2">
+								<div class="icon"><span class="flaticon-pray"></span></div>
+								<div class="text">
+									<h4>Focusing upward</h4>
+									<span class="subheading">Hebrews 12:2</span>
+									<p>..let us run with endurance the race that is set before us, fixing our eyes on Jesus, the author and perfecter of faith.</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="services-2">
+								<div class="icon"><span class="flaticon-church"></span></div>
+								<div class="text">
+									<h4>Nurturing inwards</h4>
+									<span class="subheading">Ephesians 4:12-16</span>
+									<p>..to equip the saints for the work of ministry, for building up the body of Christ, until we all attain to the unity of the faith and of the knowledge of the Son of God, to mature manhood..</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4">
+							<div class="services-2">
+								<div class="icon"><span class="flaticon-love"></span></div>
+								<div class="text">
+									<h4>Engaging outward</h4>
+									<span class="subheading">Matthew 28:18-20
+                  </span>
+									<p>Go therefore and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit, teaching them to observe all that I have commanded you..”</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 d-flex">
+					<div class="services-2 services-block">
+						<div class="text">
+							<h4><i>"Man's chief end is to glorify God and enjoy Him forever."</i></h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="ftco-section ftco-no-pt ftco-no-pb bg-light">
+		<div class="container">
+			<div class="row d-flex">
+				<div class="col-md-6 d-flex">
+					<div class="img img-video d-flex align-self-stretch align-items-center justify-content-center justify-content-md-center mb-4 mb-sm-0" style="background-image:url(images/fellowship.jpg);">
+					</div>
+				</div>
+				<div class="col-md-6 pl-md-5 py-md-5">
+					<div class="heading-section pt-md-5 mb-4">
+						<span class="subheading">Our fellowships</span>
+						<!--<h2 class="mb-5">Plug in to any of the fellowships below:</h2>-->
+						<p>We gather together for mutual encouragement in accordance to God's word in Hebrews 10:25. Join us for:</p>
+            <p><b>Sunday morning service at 10:00 am to 12:00 pm in the main church hall.</b> </p>
+            <p><b>Juja Bible study on Wednesdays: 6:00 pm to 7:30 pm</b></p>
+            <p><b>Kahawa West Bible study on Thursdays: 6:30 pm to 8:00 pm</b></p>
+            <p><b>K.U Ruiru Campus Bible study on Tuesdays : 7:00 pm to 8:00 pm</b></p>
+            <p><b>K.U. Kenyatta Market Bible study on Saturdays: 12:30 pm to 2:00 pm</b></p>
+						<!-- <p><a href="#" class="btn btn-primary">Learn More</a></p>-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+<% if (sermons.length !== 0) { %> 
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center pb-5 mb-3">
+				<div class="col-md-7 heading-section text-center ftco-animate">
+					<span class="subheading">Our Sermons</span>
+					<h3>Latest Sermon</h3>
+				</div>
+			</div>
+			<% sermons.forEach(sermon => { %>
+			<div class="row no-gutters d-flex sermon-wrap ftco-animate bg-light">
+              <div class="img col-md-4 col-lg-4 ml-0 " style="background-image: url(<%= sermon.coverImagePath; %>);"></div>
+            <div class="col-md-8 col-lg-8 text px-5">
+            <div class="card mt-2">
+            <!-- Card content -->
+            <div class="card-body text-center">
+            <div class="">
+                    <audio id="music" preload="true" class="mt-2">
+                    <source src="<%= sermon.audioPath; %>">  
+                    Sorry, your browser doesn't support embedded videos.
+                    </audio>
+                  <div  id="audioplayer" >
+                  <i id="pButton" class="fa fa-play"></i>
+                  <div id="timeline">
+                      <div id="playhead"></div>
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+                  </div>
+                  <h2 class="mt-2 mb-2"><%= sermon.title; %></h2>
+                  <div class="meta mb-0">
+                    <p >
+                    <span class="d-inline" style="color: #ce0f3d">Speaker: </span> <%= sermon.speaker; %><br>
+                    <!--<span>Bible passage: <a href="#">{{$sermon->passage}}</a></span><br>-->
+                    <span class="d-inline" style="color: #ce0f3d">Delivered: </span> <%= sermon.eventname; %> <span style="text-decoration: underline;"><%= sermon.eventdate.toLocaleDateString(); %></span>
+                  </p>
+                </div class="mt-0">
+                <p style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;"><%= sermon.description; %></p>
+                <p class="btn-customize">
+                
+                  <a href="/sermons" class="btn btn-primary px-4 py-3 mr-md-2"><span class="fa fa-play"></span> All Sermons</a>
+                 <a href="<%= sermon.audioPath; %>" class="btn btn-primary btn-outline-primary px-4 py-3 ml-lg-2 mb-1" download><span class="fa fa-download"></span> download sermon</a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+            <% }); %>
+				</div>
+			</div>
+
+		</div>
+	</section>
+	<% } %>
+
+	<% if (articles.length !== 0) { %> 
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center pb-5 mb-3">
+				<div class="col-md-7 heading-section text-center ftco-animate">
+					<span class="subheading">Our Blog</span>
+					<h3>Top Blogs</h3>
+				</div>
+			</div>
+			
+			<div class="row d-flex">
+				<% articles.forEach(blog => { %>
+				<div class="col-md-6 col-lg-4 d-flex ftco-animate">
+					<div class="blog-entry align-self-stretch">
+						<a href="/blogg/<%= blog.slug; %>" class="block-20" style="background-image: url('<%= blog.coverImagePath; %>">
+						</a>
+						<div class="text p-4">
+							<div class="meta mb-2">
+								<div><p href="#"><%= blog.createdAt.toDateString(); %></p></div>
+								
+								<div><p href="#" class="meta-chat"><span class="fa fa-comment"></span> <%= blog.comments.length; %></p></div>
+							</div>
+							<h3 class="heading"><a href="/blogg/<%= blog.slug; %>"><%= blog.title; %></a></h3>
+							<p style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;"><%= blog.description; %></p>
+							<p><a href="/blogg/<%= blog.slug; %>" class="btn btn-primary">Read more</a></p>
+						</div>
+					</div>
+				</div>
+			<% }); %>
+			</div>
+		</div>
+	</section>
+	<% } %>
+
+
+
+ <% if (events.length !== 0) { %> 
+<section class="ftco-section">
+		<div class="container p-5">
+			<div class="row justify-content-center pb-5 mb-3">
+				<div class="col-md-7 heading-section text-center ftco-animate">
+					<span class="subheading">Events</span>
+					<h3>Upcoming Events</h3>
+				</div>
+			</div>
+			
+				<div class="row pb-2 d-flex  ftco-animate bg-light">
+            
+          <% events.forEach(event => { %>            
+        
+        <div class="col-md-6 col-lg-6 mb-3">
+            
+            <div class=" kl-card kl-xl kl-reveal kl-fade kl-overlay kl-show kl-slide-in kl-shine" Style="border-bottom: solid #ce0f3d">
+
+                <div class="kl-card-block bg-danger">
+                    <a  class="kl-card-avatar kl-md kl-ptl kl-slow">
+                    <div class="date">
+        				<span class="day"><%= event.eventdate.getDate(); %></span>
+        				<span class="month"><%= event.eventdate.toLocaleString("en", { month: "short"  }); %></span>
+        				<span class="year"><%= event.eventdate.getFullYear(); %> </span>
+      				</div>
+      				</a>
+       			</div>
+
+       		        <div class="kl-card-block kl-lg bg-success kl-shadow-br kl-overlay">
+                    		<div class="kl-background">
+                        		<img src="<%= event.eventImagePath; %>">
+                   			 </div>
+                    		<div class="kl-card-overlay kl-card-overlay-split-v-4 kl-dark kl-inverse kl-top-in">
+                        			<div class="kl-card-overlay-item"></div>
+                        			<div class="kl-card-overlay-item"></div>
+                        			<div class="kl-card-overlay-item"></div>
+                       				 <div class="kl-card-overlay-item"></div>
+                    		</div>
+                    		
+                    		
+                   			<div class="kl-card-item kl-pb kl-show text-white kl-txt-shadow text-center">
+                        		<h3 class="mb-0"><%= event.eventname; %></h3>
+                        			<div class="text-white small">starts @ <%= event.starttime; %></div>
+                    		</div>                  
+                    
+                    
+                	</div>
+                			<div class="kl-card-item ">
+                    				<h4 class="card-title"><%= event.eventname; %></h4>
+                    				<p class="card-text" style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;"><%= event.description; %></p>
+                			</div>
+                			<div class="kl-card-item  kl-show text-primary kl-txt-shadow">
+                        		                           
+                            		<a href="/contact" style="color: #ce0f3d !important;" class="kl-pbl kl-title text-primary">Register Here</a>
+                        		
+              
+                       			
+                            		<a href="/events" style="float: right; color: #ce0f3d !important;" class=" kl-pbr kl-title text-primary">See All Events</a>
+                        		
+                    		</div>
+            </div>
+            </div>
+
+           <% }); %>
+            </div>
+            </div>
+			
+	</section>
+<% } %>
+
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center pb-5 mb-3">
+				<div class="col-md-7 heading-section text-center ftco-animate">
+					<span class="subheading">Our Blog</span>
+					<h3>Directions</h3>
+				</div>
+			</div>
+		
+			
+				<!--Google map-->
+<div id="map-container-google-2" class="z-depth-1-half map-container" style="height: auto">
+  <iframe class="col-12" style="height: 30rem; margin: auto" src="https://maps.google.com/maps?q=hope%20city%20bible%20church&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0"  style="border:0" allowfullscreen></iframe>
+</div>
+
+<!--Google Maps-->
+			</div>
+		</div>
+	</section>
+
+<%- include ('_layouts/websitefoot'); -%>
+<script>
+$(document).ready(function () {
+    $(window).on("resize", function (e) {
+        checkScreenSize();
+    });
+
+    checkScreenSize();
+
+    function checkScreenSize(){
+        var newWindowWidth = $(window).width();
+        if (newWindowWidth < 768) {
+           
+        	jQuery(function($) {
+    $('.golink').click(function() {
+        return false;
+    }).dblclick(function() {
+        window.location = this.href;
+        return false;
+    });
+});
+
+        }
+        
+    }
+});
+
+</script>
+
+<style type="text/css">
+
+
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
+
+.date {
+	 position: absolute;
+	 top: 0;
+	 left: 0;
+	 background-color: #ce0f3d;
+	 color: #fff;
+	 padding: 0.2em;
+	 
+}
+.date span {
+	 display: block;
+	 text-align: center;
+}
+.date .day {
+	 font-weight: 700;
+	 font-size: 24px;
+	 text-shadow: 2px 3px 2px rgba(0, 0, 0, 0.18);
+}
+.date .month {
+	 text-transform: uppercase;
+}
+.date .month, .example-1 .date .year {
+	 font-size: 12px;
+}
+
+
+
+
+
+.map-container-2{
+overflow:hidden;
+padding-bottom:56.25%;
+position:relative;
+height:0;
+}
+.map-container-2 iframe{
+left:0;
+top:0;
+height:100%;
+width:100%;
+position:absolute;
+}
+
+.card {
+  width: 30rem;
+  height: auto;
+   background: transparent !important;
+border: none;}
+
+.card .view {
+  width: auto;
+  border: none;
+ }
+
+.card h5 a {
+  color: #0d47a1;
+}
+.card h5 a:hover {
+  color: #072f6b;
+}
+
+  #pButton {
+  float: left; }
+
+#timeline {
+  opacity: 1;
+  width: 90%;
+  height: 2px;
+  margin-top: 20px;
+  margin-left: 10px;
+  float: left;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
+  background: rgba(0, 0, 0, 0.3); }
+
+#pButton {
+  margin-top: 12px;
+  cursor: pointer; }
+
+#playhead {
+  width: 8px;
+  height: 8px;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  margin-top: -3px;
+  background: black;
+  cursor: pointer; }
+
+  @media (max-width: 768px) {
+
+
+  .card {
+  	width: 18rem;
+  height: auto;
+   background: transparent !important;
+border: none;}
+}
+
+</style>

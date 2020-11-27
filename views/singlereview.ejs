@@ -1,0 +1,743 @@
+  
+<%- include ('_layouts/websitehead'); %>
+<meta property="title" content="<%= book.title; %>">
+<meta property="image" content="<%= book.coverImagePath; %>">
+<meta property="description" content="<%= book.description; %>">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" type="text/css" href="./../css/style.css">
+<link rel="stylesheet" type="text/css" href="./../css/flaticon.css">
+<style type="text/css">
+  header.masthead {
+  position: relative;
+  width: 100%;
+  margin-top: 10rem;
+  padding-top: 50px;
+  padding-bottom: 100px;
+  color: white;
+ }
+
+header.masthead .header-content {
+  max-width: 500px;
+  margin-bottom: auto;
+  text-align: center;
+}
+
+header.masthead .header-content p {
+  font-size: 20px;
+  color: white;
+}
+
+header.masthead .device-container {
+  max-width: 350px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+header.masthead .device-container .screen img {
+  border-radius: 3px;
+}
+
+img.small {
+border-radius: 50pc;
+width: 100px;
+height: 100px;
+}
+
+@media (max-width: 768px) {
+  img.small {
+border-radius: 50pc;
+width: 50px;
+height: 50px;
+}
+.hero-wrap{
+    height: 90pc !important;
+  }
+}
+
+
+@media (max-width: 992px) {
+  .hero-wrap{
+    height: 70pc;
+  }
+  p.small {
+    overflow: hidden; display: -webkit-box; -webkit-line-clamp: 16; -webkit-box-orient: vertical;"
+  }
+}
+
+@media (min-width: 992px) {
+  .hero-wrap{
+    height: 50pc !important;
+  }
+    p.small {
+
+    overflow: hidden; display: -webkit-box; -webkit-line-clamp: 10; -webkit-box-orient: vertical;"
+  }
+
+  header.masthead {
+    height: 100vh;
+    min-height: 775px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  header.masthead .header-content {
+    margin-bottom: 0;
+    text-align: left;
+  }
+  header.masthead .header-content h1 {
+    font-size: 50px;
+  }
+  header.masthead .device-container {
+    max-width: 325px;
+  }
+}
+</style>
+<section class="hero-wrap hero-wrap-2" style=" background-image: url('./../images/sermons.jpg')">
+    <div class="overlay"></div>
+ <!--   <div class="container">
+        <div class="row no-gutters slider-text align-items-end" >
+        <div class="col-md-9 ftco-animate pb-5">
+         <p class="breadcrumbs mb-2"><span class="mr-2"><a href="{{route('index')}}">Home <i class="fa fa-chevron-right"></i></a></span> <span>blogs <i class="fa fa-chevron-right"></i></span></p>
+         <h1 class="mb-0 bread">{{$blog->title}}</h1>
+       </div>
+     </div>
+      </div>-->
+
+  <header class="masthead">
+    <div class="container h-40">
+      <div class="row h-40">
+        <div class="col-xs-5 col-lg-5 my-auto">
+          <div class="device-container">
+            <div class="device-mockup iphone6_plus portrait white">
+              <div class="device">
+                <div class="screen">
+                  <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
+                  <img height="500" width="300" src="<%= book.coverImagePath; %>">
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-7 col-lg-7 my-auto">
+          <div class="header-content mx-0">
+            <h2 class="" style="color: #ce0f3d"><b><%= book.title; %></b></h2>
+            <p class="small mb-1" ><%= book.description; %></p>
+            <p class="mb-3"><span style="color: #ce0f3d; font-size: 15px"><%= book.createdAt.toDateString(); %></span></p>
+            <!--<a href="#download" class="btn btn-outline btn-xl js-scroll-trigger">Start Now for Free!</a>-->
+            <p class="mt-0 mb-0"><span style="color: #ce0f3d;">Book Author </span> <b><%= book.author; %></b></p>
+             <p class="mt-0"><span style="color: #ce0f3d;">Publisher: </span><b><%= book.publisher; %></b></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </header>
+</section>
+
+
+</section>
+<section class="ftco-section">
+    <div class="container">
+      <div class="row">
+          <div class="col-md-8 col-lg-8 bg-light">
+          <div class=" ml-3 mb-4">
+            <%- book.sanitizedHtml; %>
+          </div> 
+           
+                              <!-- writer-->
+           <div class="col-9 mb-4">
+           <% book.writer.forEach(author => { %>            
+            <div class=" cart-item d-md-flex justify-content-between">
+                <div class="px-3">
+                    <div class="cart-item-product">
+                    
+                        <div class="cart-item-product-thumb"><img src="<%= author.coverImagePath; %>" alt="Product"></div>
+                        <div class="cart-item-product-info ml-3">
+                            <h4 class="cart-item-product-title"><%= author.name; %></h4>
+                            <div class="text-lg text-body font-weight-medium  pb-1"><p style="font-size: 10px;"><%= author.description; %></p>
+                         
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        
+          <% }); %>
+        </div>
+        <div class=" mb-4">
+            <div class="container">
+  <h2 class="text-center"><%= book.bkcomments.length; %> Comments</h2>
+  
+  <div class="card">
+      <div class="card-body">
+<% book.bkcomments.forEach(bkcomment => { %> 
+          <div class="row mb-2">
+              <div class="col-md-2">
+                  <img class="small" src="https://picsum.photos/200?random=<%= bkcomment._id %>" class="img img-rounded img-fluid"/>
+                  
+              </div>
+              <div class="col-md-10">
+                  <p>
+                      <a class="float-left" ><strong><%= bkcomment.name; %></strong></a>
+                      <text class="text-secondary d-inline"> | <%= bkcomment.createdAt.toDateString(); %></text>
+                 </p>
+                 <div class="clearfix"></div>
+                  <p><%= bkcomment.content; %></p>
+                  <div class="replybutton btn4 like " >  
+                      <a  class="float-right btn btn-outline-danger mb-1 ml-2"> <i class="fa fa-reply"></i> Reply</a><br>
+                      
+                 </div>
+             
+     
+      <div class="formBox card-inner reply" style="display: none">
+        <form   method="post" action="/bkcomments/<%= bkcomment._id; %>/bkreplys" >
+       
+             <div class="row">
+              <div class="col-sm-12">
+                <div class="inputBox ">
+                  <div class="inputText"> Name</div>
+                  <input type="text" name="username" class="input" required
+                </div>
+              </div>
+              </div>
+
+              <div class="row">
+              <div class="col-sm-12">
+                <div class="inputBox">
+                  <div class="inputText">Email</div>
+                  <input type="email" name="email" class="input" required>
+                </div>
+              </div>
+            </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="inputBox">
+                 <input type="hidden" name="comment_id" value="<%= bkcomment._id; %>"  class="input">
+                </div>          
+                </div>
+              </div>
+              <div class="row">
+              <div class="col-sm-12">
+                <div class="inputBox">
+                 <input type="hidden" name="book_id" value="<%= book._id; %>"  class="input">
+                </div>          
+                </div>
+              </div>
+            
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="inputBox">
+                  
+                  <textarea class="input" placeholder="Comment" name="comment"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12">
+                <input type="submit" name="" class="button" value="reply">
+              </div>
+            </div>
+        </form>
+      
+      </div>
+   </div>
+  </div>
+
+            <div class="card card-inner">
+            <% bkcomment.bkanswers.forEach(bkanswer => { %> 
+                  <div class="card-body">
+                
+                  
+                      <div class="row">
+                          <div class="col-md-2">
+                              <img class="small" style="border-radius: 50pc"  src="https://picsum.photos/200?random=<%= bkanswer._id %>" class="img img-rounded img-fluid"/>
+                              
+                          </div>
+                          <div class="col-md-10">
+                              <p><a ><strong><%= bkanswer.name; %></strong></a>
+                                  <text class="text-secondary d-inline"> |  <%= bkanswer.createdAt.toDateString(); %></text>
+                              </p>
+                              <p><%= bkanswer.content; %></p>
+                             
+                          </div>
+                      </div>
+                     
+
+                  </div>
+                   <% }); %>
+              </div>
+      <% }); %>
+
+    </div>
+      </div>
+      <div class="container">
+      <div class="formBox">
+       <form id="comment"  method="post" action="/books/<%= book._id; %>/comments" onsubmit="return doComment(this);">
+            <div class="row">
+              <div class="col-sm-12">
+                <p>Post a comment:</p>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="inputBox ">
+                  <div class="inputText">Name</div>
+                  <input type="text" name="username" class="input">
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="inputBox">
+                  <div class="inputText">Email</div>
+                  <input type="email" name="email" class="input">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="inputBox">
+                  <input type="hidden" name="book_id" value="<%= book._id; %>" class="input">
+                </div>
+              </div>
+
+              <div class="col-sm-6">
+                <div class="inputBox">
+                  <input type="hidden" name="book_slug" value="<%= book.slug; %>" class="input">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="inputBox">
+                  <textarea class="input" placeholder="Comment" name="comment"></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12">
+                <input type="submit" name="" class="button" value="comment">
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+          </div>
+      
+     
+    <!-- .col-md-8 -->
+     <div Class="col-md-4 col-lg-4 ">
+         <div class="sticky-top">
+          <div class="slimScrollDiv" style="position: relative; overflow: show; width: auto; height: auto; background-color: #fff;">
+                
+         <div><span><b>Recent Book Reviews</b></span></div>
+            <div class="scroll-widget">
+           <% reviews.forEach(book => { %>
+                    <a href="/book/<%= book.slug; %>">
+                      <ul class="media-list mt-0 ">
+                        <li class="media">
+                          <div class="pull-left">
+                             <img class="media-object" src="<%= book.coverImagePath; %>" alt="Avatar">
+                          </div>
+                        <div class="media-body ml-5">
+                             <h4 class="media-heading" style="font-size: 10px"> <small><%= book.createdAt.toDateString(); %></small></h4>
+                              <h2 style="font-size: 15px"><%= book.title; %></h2>
+                        </div>
+                        </li>
+                      </ul>
+                    </a>
+                   <% }); %>
+              </div>
+              </div>
+          </div>
+     </div>
+  
+    </div>
+ </div>
+        
+
+  </section>
+
+
+
+
+
+
+
+<footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+                <div class="block-21 mb-4 d-flex">
+            <a class="img mr-4 rounded" style="background-image: url(./../images/logo3.jpg);"></a>
+
+          </div>
+          
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+          <h2 class="footer-heading">Hope City Bible Church</h2>
+          <p>Focusing upward. Nurturing inward. Engaging toward.</p>
+          <ul class="ftco-footer-social p-0">
+            <li class=""><a href="https://twitter.com/hcbc_1689" data-toggle="tooltip" data-placement="top" title="Twitter"><span class="fa fa-twitter"></span></a></li>
+            <li class=""><a href="https://www.facebook.com/hcbcke" data-toggle="tooltip" data-placement="top" title="Facebook"><span class="fa fa-facebook"></span></a></li>
+            <li class=""><a href="https://www.instagram.com/hcbc_1689/?hl=en" data-toggle="tooltip" data-placement="top" title="Instagram"><span class="fa fa-instagram"></span></a></li>
+          </ul>
+        </div>
+        
+        <div class="col-md-6 col-lg-3 pl-lg-5 mb-4 mb-md-0">
+          <h2 class="footer-heading">Quick Links</h2>
+          <ul class="list-unstyled">
+            <li><a href="/" class="py-2 d-block">Home</a></li>
+            <li><a href="/about" class="py-2 d-block">About</a></li>
+            <li><a href="/resources" class="py-2 d-block">Resources</a></li>
+            <li><a href="/contact" class="py-2 d-block">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
+          <h2 class="footer-heading">Have a Questions?</h2>
+          <div class="block-23 mb-3">
+            <ul>
+              <li><span class="icon fa fa-map"></span><span class="text">Thika Road, Nairobi, Kenya</span></li>
+              <li><a href="tel:+254735950443"><span class="icon fa fa-phone"></span><span class="text">0735 950443</span></a></li>
+              <li><a href="mailto:info@hopecitybiblechurch.org"><span class="icon fa fa-paper-plane"></span><span class="text">info@hopecitybiblechurch.org</span></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      </div>
+    </footer>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> 
+ <script>              
+$(document).ready(function() {
+  $('.replybutton').click(function() {
+    $(this).next('.reply').toggle();
+  });
+});
+</script>
+
+    
+    
+
+    <!-- loader -->
+    <!--<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>-->
+
+    <script src="js/audio.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery-migrate-3.0.1.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/s/jquery.easing.1.3.js"></script>
+    <script src="/js/jquery.waypoints.min.js"></script>
+    <script src="/js/jquery.stellar.min.js"></script>
+    <script src="/js/jquery.animateNumber.min.js"></script>
+    <script src="/js/bootstrap-datepicker.js"></script>
+    <script src="/js/jquery.timepicker.min.js"></script>
+    <script src="/js/owl.carousel.min.js"></script>
+    <script src="/js/jquery.magnific-popup.min.js"></script>
+    <script src="/js/scrollax.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script src="/js/google-map.js"></script>
+    <script src="/js/main.js"></script>
+    <script >
+  $(document).ready(function () {
+        var url = window.location;
+    // Will only work if string in href matches with location
+        $(' a[href="' + url + '"]').parent().addClass('active');
+
+    // Will also work for relative and absolute hrefs
+        $(' a').filter(function () {
+            return this.href == url;
+        }).parent().addClass('active').parent().parent().addClass('active');
+    });
+    </script>
+    <script>
+$(document).ready(function () {
+    $(window).on("resize", function (e) {
+        checkScreenSize();
+    });
+
+    checkScreenSize();
+
+    function checkScreenSize(){
+        var newWindowWidth = $(window).width();
+        if (newWindowWidth < 768) {
+           
+          jQuery(function($) {
+    $('.golink').click(function() {
+        return false;
+    }).dblclick(function() {
+        window.location = this.href;
+        return false;
+    });
+});
+
+        }
+        
+    }
+});
+
+</script>
+    <!-- Main Quill library -->
+    
+<!-- <script src="https://cdn.quilljs.com/1.3.6/quill.js')}}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>-->
+
+
+  
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" ></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+  </body>
+  </html>
+ 
+<style>
+.formBox{
+  margin-top: 5px;
+  padding: 10px;
+}
+.formBox  h1{
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  margin-bottom: 50px;
+  text-transform: uppercase;
+  font-size: 48px;
+}
+.inputBox{
+  position: relative;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+.inputBox .inputText{
+  position: absolute;
+    font-size: 24px;
+    line-height: 50px;
+    transition: .5s;
+    opacity: .5;
+}
+.inputBox .input{
+  position: relative;
+  width: 100%;
+  height: 50px;
+  background: transparent;
+  border: none;
+    outline: none;
+    font-size: 24px;
+    border-bottom: 1px solid rgba(0,0,0,.5);
+
+}
+.focus .inputText{
+  transform: translateY(-30px);
+  font-size: 18px;
+  opacity: 1;
+  color: #00bcd4;
+
+}
+textarea{
+  height: 100px !important;
+}
+.button{
+  width: 100%;
+    height: 50px;
+    border: none;
+    outline: none;
+    background: #ce0f3d;
+    color: #fff;
+}
+
+
+
+.card-inner{
+    margin-left: 4rem;
+}
+
+
+ .media-list .media {
+    padding: 5px 20px;
+    border-bottom: 1px solid #eaeaea;
+}
+
+.media-list .media .media-object {
+    width: 50px;
+    height: 50px;
+}
+
+.scroll-widget{
+    overflow: hidden;
+    width: auto;
+  }
+
+
+.cart-item {
+  position: relative;
+  margin: 10px 0 30px 10px;
+  padding: 10px 50px 10px 10px;
+  background-color: #DCDCDC;
+  box-shadow: 0 12px 20px 1px rgba(64, 64, 64, .09);
+  border-radius: 1pc;
+}
+.cart-item .cart-item-label {
+  display: block;
+  margin-bottom: 15px;
+  color: #8c8c8c;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.cart-item .cart-item-product {
+  display: table;
+  width: 420px;
+  text-decoration: none;
+}
+.cart-item .cart-item-product-thumb, .cart-item .cart-item-product-info {
+  display: table-cell;
+  vertical-align: top;
+}
+.cart-item .cart-item-product-thumb {
+  width: 100px;
+}
+.cart-item .cart-item-product-thumb > img {
+  display: block;
+  width: 90px;
+  height: 90px;
+  border-radius: 50pc;
+}
+  
+}
+.cart-item .cart-item-product-info {
+  padding-top: 5px;
+  padding-left: 15px;
+}
+.cart-item .cart-item-product-info > span {
+  display: block;
+  margin-bottom: 2px;
+  color: #404040;
+  font-size: 12px;
+}
+.cart-item .cart-item-product-title {
+  margin-bottom: 8px;
+  transition: color, 0.3s;
+  color: #343b43;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.cart-item .count-input {
+  display: inline-block;
+  width: 85px;
+}
+
+@media (max-width: 991px) {
+  .cart-item {
+    padding-right: 30px;
+  }
+  .cart-item .cart-item-product {
+    width: auto;
+  }
+}
+@media (max-width: 768px) {
+  .cart-item {
+    padding-right: 10px;
+    padding-bottom: 15px;
+  }
+  .cart-item .cart-item-product {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  .cart-item .cart-item-product-thumb, .cart-item .cart-item-product-info {
+    display: block;
+  }
+  .cart-item .cart-item-product-thumb {
+    margin: 0 auto 10px;
+  }
+  .cart-item .cart-item-product-info {
+    padding-left: 0;
+  }
+  .cart-item .cart-item-label {
+    margin-bottom: 8px;
+  }
+}
+.comparison-table {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.comparison-table table {
+  min-width: 750px;
+  table-layout: fixed;
+}
+.comparison-table .comparison-item {
+  position: relative;
+  margin-bottom: 10px;
+  padding: 13px 12px 18px;
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 0 12px 20px 1px rgba(64, 64, 64, .09);
+}
+.comparison-table .comparison-item .comparison-item-thumb {
+  display: block;
+  width: 80px;
+  margin-right: auto;
+  margin-bottom: 12px;
+  margin-left: auto;
+}
+.comparison-table .comparison-item .comparison-item-thumb > img {
+  display: block;
+  width: 100%;
+}
+.comparison-table .comparison-item .comparison-item-title {
+  display: block;
+  margin-bottom: 14px;
+  transition: color 0.25s;
+  color: #404040;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.comparison-table .comparison-item .comparison-item-title:hover {
+  color: #ac32e4;
+}
+.remove-item {
+  display: block;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 22px;
+  height: 22px;
+  padding-left: 1px;
+  border-radius: 50%;
+  background-color: #ff5252;
+  color: #fff;
+  line-height: 23px;
+  text-align: center;
+  box-shadow: 0 3px 12px 0 rgba(255, 82, 82, .5);
+  cursor: pointer;
+}
+.card-wrapper {
+  margin: 30px -15px;
+}
+@media (max-width: 576px) {
+  .card-wrapper .jp-card-container {
+    width: 260px !important;
+  }
+  .card-wrapper .jp-card {
+    min-width: 250px !important;
+  }
+}
+
+</style>
+  

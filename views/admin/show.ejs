@@ -1,0 +1,18 @@
+  <%- include ('adminlook'); %>
+  <div class="container">
+    <h1 class="mb-1"><%= blog.title; %></h1>
+    <div class="text-muted mb-2">
+      <%= blog.createdAt.toLocaleDateString(); %>
+    </div>
+    <a href="/admin/editblog" class="btn btn-secondary">All Articles</a>
+    <a href="/admin/edit/<%= blog.id; %>" class="btn btn-info">Edit</a>
+
+
+    <div class="mt-2">
+          <img height="350" width="700" src="<%= blog.coverImagePath; %>">
+         
+    </div>
+
+    <div class="mt-1">
+    <%- blog.sanitizedHtml %>
+    </div>

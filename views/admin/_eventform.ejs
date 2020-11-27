@@ -1,0 +1,22 @@
+<div class="form-group">
+<label for="eventname">Event Name</label>
+<input required type="text" value="<%= event.eventname; %>" name="eventname" id="eventname" class="form-control" style="width: auto;">
+</div>
+<div class="form-group" style="width: 30pc;">
+<label for="coverImage"> Image</label>
+<input name= "coverImage" type="file" class="filepond">
+</div>
+<div class="form-group">
+<label for="eventdate">Event Date</label>
+<input required type="date" name="eventdate" id="eventdate" class="form-control" style="width: auto;">
+</div>
+<div class="form-group">
+<label for="starttime">Start Time</label>
+<input required type="text" value="<%= event.starttime; %>" name="starttime" id="starttime" class="form-control" style="width: auto;">
+</div>
+<div class="form-group">
+<label for="description">Description</label>
+<textarea required  name="description" id="description" class="form-control" style="width: auto;"><%= event.description; %></textarea>
+</div>
+<a href="/admin" class="btn btn-secondary">cancel</a>
+<button type="submit" class="btn btn-primary">save</button>

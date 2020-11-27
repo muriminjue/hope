@@ -1,0 +1,25 @@
+<%- include ('adminlook'); %>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Avatar</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Last Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Delete</th>
+      </tr>
+  </thead>
+  <tbody>
+  	<% admins.forEach(admin=> { %>
+    <tr>
+      <th scope="row">1</th>
+      <td><img height="30" width="30" src="<%= admin.coverImagePath; %>" style="border-radius: 50pc"></td>
+      <td><%- admin.firstname; %></td>
+      <td><%- admin.lastname; %></td>
+      <td><%- admin.email; %></td>
+      <th scope="col"><form action="/admin/admins/<%= admin.id; %>?_method=DELETE" method="POST" classn="btn btn-danger"><button type="submit" class="btn btn-danger">DELETE</button></form></th>
+       </tr>
+    <% }) %>
+  </tbody>
+</table>

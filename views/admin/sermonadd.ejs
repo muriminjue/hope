@@ -1,0 +1,39 @@
+<%- include ('adminlook'); %>
+<div class="container">
+	<h1 class="mb-4"> New Sermon</h1>
+		<form action="/admin/sermonedit" Method="POST">
+		<div class="form-group">
+<label for="title">Title</label>
+<input required type="text" value="<%= sermon.title; %>" name="title" id="title" class="form-control" style="width: auto;">
+</div>
+<div class="form-group" style="width: 30pc;">
+<label for="blimage"> Image</label>
+<input name= "blimage" type="file" class="filepond" >
+</div>
+<div class="form-group">
+<label for="eventname">Preached at</label>
+<input required type="text" value="<%= sermon.eventname; %>" name="eventname" id="eventname" class="form-control" style="width: auto;">
+</div>
+
+<div class="form-group">
+<label for="speaker">By: </label>
+<input required type="text" name="speaker" id="speaker" value="<%= sermon.speaker; %>"class="form-control" style="width: auto;">
+</div>
+<div class="form-group" style="width: 30pc;">
+<label for="sermonaudio"> Sermon Audio:</label>
+<input required name="sermonaudio" id="sermonaudio" type="file" class="filepond">
+</div>
+<div class="form-group">
+<label for="eventdate">Date: </label>
+<input required type="date" name="eventdate" id="eventdate" class="form-control" style="width: auto;">
+</div>
+<div class="form-group">
+<label for="description">Description</label>
+<textarea required  name="description" id="description" class="form-control" style="width: auto;"><%= sermon.description; %></textarea>
+</div>
+<a href="/admin" class="btn btn-secondary">cancel</a>
+<button type="submit" class="btn btn-primary">save</button>
+
+		</form>
+</div>
+

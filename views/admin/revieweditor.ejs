@@ -1,0 +1,9 @@
+<%- include ('adminlook'); %>
+
+<div class="container">
+	<h1 class="mb-4"> Edit Book Review</h1>
+	<form action="/admin/book/<%= book.id %>?_method=PUT" Method="POST">
+		<%- include ('_reviewform'); %>
+
+		</form>
+</div>

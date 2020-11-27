@@ -1,0 +1,9 @@
+<%- include ('adminlook'); %>
+
+<div class="container">
+	<h1 class="mb-4"> Edit Article</h1>
+		<form action="/admin/blog/<%= blog.id %>?_method=PUT" Method="POST">
+		<%- include ('_formfields'); %>
+
+		</form>
+</div>

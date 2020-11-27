@@ -1,0 +1,26 @@
+  <%- include ('adminlook'); %>
+  <div class="container">
+    <h1 class="mb-4">Events</h1>
+    <a href="/admin/eventadd" class="btn btn-success">New Event</a>
+
+    <% events.forEach(event => { %>
+      <div class="card mt-4">
+        <div class="card-body">
+        <img height="100" width="150" src="<%= event.eventImagePath; %>">
+          <h3 class="card-title mt-1"><b><%= event.eventname; %><b></h3>
+          
+          <h5  class="card-subtitle"> On <b><%= event.eventdate.toLocaleDateString(); %></b> starting at <b><%= event.starttime; %> 
+          </b> </h5>
+          
+          <div class="card-subtitle text-muted mb-2">
+            Posted on <%= event.createdAt.toLocaleDateString(); %>
+          </div>
+          <div class="card-text mb-2"><%= event.description; %></div>
+          <a href="/admin/eventeditor/<%= event.id; %>" class="btn btn-info">Edit</a>
+          <form action="/admin/event/<%= event.id %>?_method=DELETE" method="POST" class="d-inline">
+          <button type="submit" class="btn btn-danger">DELETE</button></form>
+          </form>
+        </div>
+      </div>
+    <% }) %>
+  </div>

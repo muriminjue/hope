@@ -1,0 +1,166 @@
+<%- include ('adminlook'); %>
+
+
+<div class="tab">
+  <button class="tablinks col-4" onclick="openCity(event, 'London')"  id="defaultOpen">Unresolved</button>
+  <button class="tablinks col-4" onclick="openCity(event, 'Paris')"  >Resolved</button>
+  <button class="tablinks col-4" onclick="openCity(event, 'Tokyo')"  >All</button>
+</div>
+
+<div id="London" class=" tabcontent">
+	  <h3>Unattended</h3>
+<table class="table" style="width:100%">
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Email</th>
+    <th>Message</th>
+    <th>Resolved</th>
+  </tr>
+
+  <% requests.forEach(request=>{ %>
+  	<% if (typeof request.approval == 'undefined'){ %>
+  <tr>
+    <td><%= request.fname %></td>
+    <td><%= request.lname %></td>
+    <td><%= request.email %></td>
+    <td><%= request.message %></td>
+    <td><form class="formname"  method="post" action="/admin/approve" ><input  type ="hidden" name="requestid" value = "<%= request._id %>"> <input type ="checkbox" name="approve" value ="resolved" onchange="document.getElementById('formName').submit()"></input> </form></td>
+  </tr>
+  <% } %>
+  <% }); %>
+
+</table>
+</div>
+
+
+
+
+<div id="Paris" class=" tabcontent">
+  <h3>Resolved:</h3>
+  <table class="table" style="width:100%">
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Email</th>
+    <th>Message</th>
+  </tr>
+
+  <% requests.forEach(request=>{ %>
+  	<% if (typeof request.approval !== 'undefined'){ %>
+  <tr>
+    <td><%= request.fname %></td>
+    <td><%= request.lname %></td>
+    <td><%= request.email %></td>
+    <td><%= request.message %></td>
+   </tr>
+  <% } %>
+  <% }); %>
+
+</table>
+</div>
+
+
+
+
+
+<div id="Tokyo" class=" tabcontent">
+  <h3>All</h3>
+ <table class="table" style="width:100%">
+  <tr>
+    <th>Firstname</th>
+    <th>Lastname</th>
+    <th>Email</th>
+    <th>Message</th>
+    <th>Status</th> 
+  </tr>
+  <tr>
+
+   <% requests.forEach(request=>{ %>
+  	
+  <tr>
+    <td><%= request.fname; %></td>
+    <td><%= request.lname; %></td>
+    <td><%= request.email; %></td>
+    <td><%= request.message; %></td>
+    <td><%= request.approval; %></td>
+  </tr>
+  <% }); %>
+
+</table>
+</div>
+
+
+<script>
+	function openCity(evt, cityName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+document.getElementById("defaultOpen").click();
+</script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $(".formname").on("change", "input:checkbox", function(){
+        $(".formname").submit();
+    });
+});
+</script>
+
+
+
+
+
+<style>
+	.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+</style>

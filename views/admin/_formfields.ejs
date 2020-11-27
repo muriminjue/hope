@@ -1,0 +1,64 @@
+<div class="form-group">
+<label for="title">Title</label>
+<input required type="text" value="<%= blog.title; %>" name="title" id="title" class="form-control" style="width: auto;">
+</div>
+<div class="form-group">
+  <label>Authors: </label><br>
+  <select name="authors[]" class="mb-2">
+  <% authors.forEach(author => { %>
+    <% if (author.id === blog.author) { %>
+      <option selected label="<%= author.name %> (<%= author.authslug %>)" value="<%= author.id %>">
+    <% } else { %>
+      <option label="<%= author.name %> (<%= author.authslug %>)" value="<%= author.id %>">
+    <% } %>
+  <% }); %>
+  </select><br>
+  <select name="authors[]" id="myDropdown" class="mb-2">
+  <% authors.forEach(author => { %>
+    <% if (author.id === blog.author) { %>
+      <option selected label="<%= author.name %> (<%= author.authslug %>)" value="<%= author.id %>">
+    <% } else { %>
+      <option label="<%= author.name %> (<%= author.authslug %>)" value="<%= author.id %>">
+    <% } %>
+  <% }); %>
+  </select><br>
+  <select name="authors[]" id="myDropdown2" class="mb-2">
+  <% authors.forEach(author => { %>
+    <% if (author.id === blog.author) { %>
+      <option selected label="<%= author.name %> (<%= author.authslug %>)" value="<%= author.id %>">
+    <% } else { %>
+      <option label="<%= author.name %> (<%= author.authslug %>)" value="<%= author.id %>">
+    <% } %>
+  <% }); %>
+  </select><br>
+    <select name="authors[]" id="myDropdown3" >
+  <% authors.forEach(author => { %>
+    <% if (author.id === blog.author) { %>
+      <option selected label="<%= author.name %> (<%= author.authslug %>)" value="<%= author.id %>">
+    <% } else { %>
+      <option label="<%= author.name %> (<%= author.authslug %>)" value="<%= author.id %>">
+    <% } %>
+  <% }); %>
+  </select>
+
+
+  </div>
+  <script> document.getElementById("myDropdown").selectedIndex = -1;
+            document.getElementById("myDropdown2").selectedIndex = -1;
+            document.getElementById("myDropdown3").selectedIndex = -1;
+  </script>
+<div class="form-group" style="width: 30pc;">
+<label for="mage"> Image</label>
+<input name= "blimage" type="file" class="filepond" >
+</div>
+<div class="form-group">
+<label for="description">Description</label>
+<textarea required  name="description" id="description" class="form-control" style="width: auto;"><%= blog.description; %></textarea>
+</div>
+<div class="form-group">
+<label for="markdown">Markdown</label>
+<textarea required  name="markdown" id="markdown" class="form-control"style="width: 50pc;"><%= blog.markdown; %></textarea>
+</div>
+
+<a href="/admin" class="btn btn-secondary">cancel</a>
+<button type="submit" class="btn btn-primary">save</button>

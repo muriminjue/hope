@@ -1,0 +1,238 @@
+<%- include ('_layouts/bloghead'); %>
+<meta property="description" content="A blog ministry of HOPE CITY BIBLE CHURCH.">
+    <!-- Page Content -->
+    <!-- Banner Starts Here -->
+    <section>
+    
+    <div class="main-banner header-text">
+      <div class="container-fluid">
+        
+        <div class="owl-banner owl-carousel">
+          <% articles.forEach(blog => { %>
+          <div class="item mx-2">
+            <img src="<%= blog.coverImagePath; %>" alt="">
+            <div class="item-content">
+              <div class="main-content">
+                <!--<div class="meta-category">
+                  <span>Fashion</span>
+                </div>-->
+                <a href="/blogg/<%= blog.slug; %>"><h4><%= blog.title; %></h4></a>
+                <ul class="post-info">
+                  <li><a ><%= blog.createdAt.toDateString(); %></a></li>
+                  <li><a > <%= blog.comments.length;%> Comments</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+            <% }) %>
+
+        </div>
+      
+      </div>
+    </div>
+    </section>
+    <!-- Banner Ends Here -->
+
+<section>
+    <section class="blog-posts mb-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="all-blog-posts">
+              <div class="row">
+              <% blogs.forEach(blog => { %>
+                <div class="col-lg-12">
+                  <div class="blog-post">
+                    <div class="blog-thumb">
+                      <img style="height: 20rem; overflow: hidden;" src="<%= blog.coverImagePath; %>" alt="">
+                    </div>
+                    <div class="down-content">
+                      <!--<span>Lifestyle</span>-->
+                      <a href="/blogg/<%= blog.slug; %>"><h4><%= blog.title; %></h4></a>
+                      <ul class="post-info">
+                        <li><a ><%= blog.createdAt.toDateString(); %></a></li>
+                        <li><a href="#"><%= blog.comments.length;%> Comments</a></li>
+                      </ul>
+                      <p style="overflow: hidden; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical;"><%= blog.description; %></p>
+                      <div class="post-options">
+                        <div class="row">
+                          <div class="col-6">
+                            <!--<ul class="post-tags">
+                              <li><i class="fa fa-tags"></i></li>
+                              <li><a href="#">Beauty</a>,</li>
+                              <li><a href="#">Nature</a></li>
+                            </ul>-->
+                          </div>
+                          <div class="col-6">
+                            <ul class="post-share">
+                              <li><i class="fa fa-share-alt"></i></li>
+                              <li><a href="http://www.facebook.com/sharer.php?u=/blogg/<%= blog.slug; %>">Facebook</a>,</li>
+                              <li><a href="#"> Twitter</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% }) %>
+                  <div>
+                  <hr class="col-12 ml-0"  style="border: 10px solid #ce0f3d;">
+                  <h1> All BLOG POSTS </h1>
+                  <hr>
+                  </div>
+               
+            
+       
+      
+
+                      </div>
+
+
+               </div>
+           
+            <div class="all-blog-posts">
+              <div class="row">
+
+              <% posts.forEach(blog => { %>
+
+                <div class="col-lg-6">
+                  <div class="blog-post">
+                    <div class="blog-thumb">
+                      <img src="<%= blog.coverImagePath; %>" alt="">
+                    </div>
+                    <div class="down-content">
+                     <a href="/blogg/<%= blog.slug; %>"><h4><%= blog.title; %></h4></a>
+                      <ul class="post-info">
+                       <li><a href="/blogg/<%= blog.slug; %>"><%= blog.createdAt.toDateString(); %></a></li>
+                        <li><a href="#"><%= blog.comments.length;%> Comments</a></li>
+                      </ul>
+                      <p style="     display: -webkit-box;  -webkit-line-clamp: 6;    -webkit-box-orient: vertical; overflow: hidden;  text-overflow: ellipsis;"><%= blog.description; %></p>
+                      <!--<div class="post-options">
+                        <div class="row">
+                          <div class="col-lg-12">
+                            <ul class="post-tags">
+                              <li><i class="fa fa-tags"></i></li>
+                              <li><a href="#">Best Templates</a>,</li>
+                              <li><a href="#">TemplateMo</a></li>
+                            </ul>
+                          </div>
+                        </div>-->
+                      </div>
+                    </div>
+                  </div>
+                  <% }) %>
+                </div>
+                 
+
+                </div>
+
+              <div class="col-lg-12">
+               <ul class="page-numbers">
+                           
+                <% if (currentPage == 1 && pages > 1) { %> 
+                <li><a href="/blog/<%= parseInt(currentPage) %>"><%=  parseInt(currentPage) %></a></li>
+                <% for (let i = 1; i < pages; i += 1) { %>
+                  <li><a href="/blog/<%= parseInt(currentPage) + i %>"> <%=  parseInt(currentPage) + i %></a> </li>
+                <% }; %>
+                <li><a href="/blog/<%= parseInt(currentPage) + 1 %>"> <i class="fa fa-angle-double-right"></i></a> </li>
+
+            <% } else if (currentPage < pages) { %>
+            <li><a href="/blog/<%= parseInt(currentPage) - 1 %>"><i class="fa fa-angle-double-left"></i>
+            </a></li>
+            <% for (let i = 1; i <= pages; i++ ) { %>
+                  <li><a href="/blog/<%= i %>"> <%=  i; %></a> </li>
+            <% }; %>
+              <li><a href="/blog/<%= parseInt(currentPage) + 1; %>">
+              <i class="fa fa-angle-double-right"></i></a></li>
+
+              <% } else if (currentPage == pages && pages > 1) { %>
+              <li><a href="/blog/<%= parseInt(currentPage) - 1 %>"><span>
+              <i class="fa fa-angle-double-left"></i>
+               </a>
+              <% for (let i = 1; i < pages; i += 1) { %>
+                  <li><a href="/blog/<%= i; %>"> <%=  i %></a> </li>
+            <% }; %>
+              <li class="disabled"><a href="/blog/<%= parseInt(currentPage); %>"><%=  parseInt(currentPage) %></a></li>              
+              <% } %>
+              </ul>
+              </div>
+
+
+                  
+                </div>
+             
+            
+         
+       
+                <div class="col-lg-4">
+            <div class="sidebar sticky-top" style="z-index: 3">
+              <div class="row">
+                <div class="col-lg-12">
+                   <!--<div class="sidebar-item search">
+                    <form id="search_form" name="gs" method="GET" action="#">
+                      <input type="text" name="q" class="searchText" placeholder="type to search..." autocomplete="on">
+                    </form>
+                  </div>-->
+                </div>
+                <div class="col-lg-12">
+                  <div class="sidebar-item recent-posts">
+                    <div class="sidebar-heading">
+                      <h2>Quick Links</h2>
+                    </div>
+                    <div class="content">
+                      <ul>
+                      <% recents.forEach(blog => { %>
+                        <li><a href="/blogg/<%= blog.slug; %>">
+                          <h5><%= blog.title; %></h5>
+                          <span><%= blog.createdAt.toDateString(); %></span>
+                        </a></li><% }) %>
+                       </ul>
+                    </div>
+                  </div>
+                </div>
+                <!--<div class="col-lg-12">
+                  <div class="sidebar-item categories">
+                    <div class="sidebar-heading">
+                      <h2>Categories</h2>
+                    </div>
+                    <div class="content">
+                      <ul>
+                        <li><a href="#">- Nature Lifestyle</a></li>
+                        <li><a href="#">- Awesome Layouts</a></li>
+                        <li><a href="#">- Creative Ideas</a></li>
+                        <li><a href="#">- Responsive Templates</a></li>
+                        <li><a href="#">- HTML5 / CSS3 Templates</a></li>
+                        <li><a href="#">- Creative &amp; Unique</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="sidebar-item tags">
+                    <div class="sidebar-heading">
+                      <h2>Tag Clouds</h2>
+                    </div>
+                    <div class="content">
+                      <ul>
+                        <li><a href="#">Lifestyle</a></li>
+                        <li><a href="#">Creative</a></li>
+                        <li><a href="#">HTML5</a></li>
+                        <li><a href="#">Inspiration</a></li>
+                        <li><a href="#">Motivation</a></li>
+                        <li><a href="#">PSD</a></li>
+                        <li><a href="#">Responsive</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>-->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section></section>
+
+
+
+<%- include ('_layouts/blogfoot'); %>

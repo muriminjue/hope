@@ -1,0 +1,25 @@
+  <%- include ('adminlook'); %>
+  <div class="container">
+    <h1 class="mb-4">Blog Articles</h1>
+    <a href="/admin/addpost" class="btn btn-success">New Article</a>
+
+    <% blogs.forEach(blog => { %>
+      <div class="card mt-4">
+        <div class="card-body">
+        <img height="100" width="150" src="<%= blog.coverImagePath; %>">
+          <h3 class="card-title mt-1"><b><%= blog.title %></b></h3>
+          <% blog.author.forEach(author => { %>
+          <h5  class="card-subtitle"> Writen by <b><%= author.name %></b></h5>
+          <% }); %>
+          <div class="card-subtitle text-muted mb-2">
+            <%= blog.createdAt.toLocaleDateString() %>
+          </div>
+          <div class="card-text mb-2"><%= blog.description; %></div>
+          <a href="/admin/blog/<%= blog.slug; %>" class="btn btn-primary">Read more</a>
+          <form action="/admin/blog/<%= blog.id %>?_method=DELETE" method="POST" class="d-inline">
+          <button type="submit" class="btn btn-danger">DELETE</button></form>
+          </form>
+        </div>
+      </div>
+    <% }) %>
+  </div>

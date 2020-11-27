@@ -1,0 +1,467 @@
+<%- include ('_layouts/bloghead'); %>
+<meta property="title" content="<%= blog.title; %>">
+<meta property="image" content="<%= blog.coverImagePath; %>">
+<meta property="description" content="<%= blog.description; %>">
+<style >
+  .right-content a:hover {
+        cursor: pointer;
+        
+      }
+      .right-content i:hover {
+        cursor: pointer;
+        color: #ce0f3d;
+      }
+</style>
+
+<section class="mt-2 mb-5">
+  <hr class=" pb-5">
+  
+</section>
+
+<section class="blog-posts grid-system mb-5 ">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="all-blog-posts">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="blog-post">
+                    <div class="blog-thumb">
+                      <img style="height: 30rem; overflow: hidden;" src="<%= blog.coverImagePath; %>" alt="">
+                    </div>
+                    <div class="down-content">
+                      <span>Lifestyle</span>
+                      <a ><h4><%= blog.title; %></h4></a>
+                      <ul class="post-info">
+                        
+                        <li><a href="#">May 12, 2020</a></li>
+                        
+                      </ul>
+                      <div class="m-0">
+                      <%- blog.sanitizedHtml; %>
+                    </div >
+                      <div class="post-options">
+                        <div class="row">
+                         
+                          <div class="col-6">
+                            <ul class="post-share">
+                              <li><i class="fa fa-share-alt"></i></li>
+                              <li><a href="https://www.facebook.com/sharer.php?u=/blogg/<%= blog.slug; %>">Facebook</a>,</li>
+                              <li><a href="https://twitter.com/share?url=/blogg/<%= blog.slug; %>&text=<%= blog.title; %>&via=[via]&hashtags=[hashtags]"> Twitter</a></li>
+                              <li><a href="https://api.whatsapp.com/send?text=<%= blog.title; %> /blogg/<%= blog.slug; %>">WhatsApp</a>,</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                       <!-- writer-->
+                       <% blog.author.forEach(author => { %>
+            <div class="">
+            <div class=" cart-item d-md-flex justify-content-between">
+                <div class="px-3 my-3">
+                    <div class="cart-item-product ml-1">
+                    
+                        <div class="cart-item-product-thumb"><img src="<%= author.coverImagePath; %>" alt="Product"></div>
+                        <div class="cart-item-product-info ml-3">
+                            <h4 class="cart-item-product-title"><%= author.name; %></h4>
+                            <div class="text-lg text-body font-weight-medium  ml-1 pb-1"><p style="font-size: 10px;"><%= author.description; %></p>
+                         
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <% }); %>
+                <div class="col-lg-12">
+                  <div class="sidebar-item comments">
+                    <div class="sidebar-heading">
+                    
+                      <h2  id="demo" ><%= blog.comments.length;%> COMMENTS </h2>
+                    </div>
+                    <div class="content">
+                      <ul id="list">
+                         <% blog.comments.forEach(comment => { %>
+                        <li id="listb">
+                          <div class="author-thumb">
+                            <img src="https://picsum.photos/200?random=<%= comment._id %>" alt="">
+                          </div>
+                          <div class="right-content">
+                            <h4><%= comment.name; %><span><%= comment.createdAt.toDateString(); %></span></h4>
+                            <p><%= comment.content; %></p>
+                          </div>
+                          
+
+                        <div class="replybutton btn4 like right-content" >                       
+                        <span class="btn " id="replyb"><i class="fa fa-reply">Reply</i></span> 
+                        </div>
+                      
+<div class=" reply sidebar-item submit-comment right-content" style="display:none">
+  <div class="content">
+
+<form   method="post" action="/comments/<%= comment._id; %>/replys" >
+                        <div class="row">
+                          <div class=" col-12">
+                            <fieldset class=" mb-0">
+                              <input style="border: solid 1px" name="username" type="text" id="username" placeholder="Your name" required="">
+                            </fieldset>
+                          </div>
+                          <div class="col-12">
+                            <fieldset>
+                              <input style="border: solid 1px" name="email" type="email" id="email" placeholder="Your email" required="">
+                            </fieldset>
+                          </div>
+                          <div class="col-12">
+                            <fieldset>
+                              <input name="comment_id" type="hidden" id="comment_id" value="<%= comment._id; %>">
+                            </fieldset>
+                          </div>
+                          <div class="col-12">
+                            <fieldset>
+                              <input name="blog_id" type="hidden" id="blog_id" value="<%= blog._id; %>">
+                            </fieldset>
+                          </div>
+                          
+                          <div class="col-12">
+                            <fieldset>
+                              <textarea style="border: solid 1px" name="comment" rows="6" id="comment" placeholder="Type your comment" required=""></textarea>
+                            </fieldset>
+                          </div>
+                          <div class="col-12">
+                            <fieldset>
+                              <button type="submit" id="form-submit" class="main-button">Reply</button>
+                            </fieldset>
+                          </div>
+                          </div>
+                </form>
+          </div>
+     </div>
+                        </li>
+                        <div class="right-content">
+                        <ul>
+
+                        <% comment.answers.forEach(answer => { %>
+                        <li class="replied">
+                          <div class="author-thumb">
+                            <img src="https://picsum.photos/200?random=<%= answer._id %>" alt="">
+                          </div>
+                          <div class="right-content">
+                            <h4><%= answer.name; %><span><%= answer.createdAt.toDateString(); %></span></h4>
+                            <p class="small"><%=  answer.content; %></p>
+                          </div>
+                        </li>
+                            <% }); %>
+                        </ul>
+                         <% }); %>
+                      </ul>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="sidebar-item submit-comment">
+                    <div class="sidebar-heading">
+                      <h2>Your comment</h2>
+                    </div>
+                    <div class="content">
+                      <form id="comment"  method="post" action="/blogs/<%= blog._id; %>/comments" onsubmit="return doComment(this);">
+                        <div class="row">
+                          <div class="col-12">
+                            <fieldset>
+                              <input style="border: solid 1px" name="username" type="text" id="username" placeholder="Your name" required="">
+                            </fieldset>
+                          </div>
+                          <div class="col-12">
+                            <fieldset>
+                              <input style="border: solid 1px" name="email" type="email" id="email" placeholder="Your email" required="">
+                            </fieldset>
+                          </div>
+                          <div class="col-12">
+                            <fieldset>
+                              <input name="blog_id" type="hidden" id="blog_id" value="<%= blog._id; %>">
+                            </fieldset>
+                          </div>
+                          <div class="col-12">
+                            <fieldset>
+                              <input name="blog_slug" type="hidden" id="blog_slug" value="<%= blog.slug; %>">
+                            </fieldset>
+                          </div>
+                          <div class="col-12">
+                            <fieldset>
+                              <textarea style="border: solid 1px" name="comment" rows="6" id="comment" placeholder="Type your comment" required=""></textarea>
+                            </fieldset>
+                          </div>
+                          <div class="col-12">
+                            <fieldset>
+                              <button type="submit" id="form-submit" class="main-button">Submit</button>
+                            </fieldset>
+                          </div>
+                        </div>
+                         </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+            <div class="col-lg-4">
+            <div class="sidebar sticky-top">
+              <div class="row">
+                <!--<div class="col-lg-12  mt-5">
+                  <div class="sidebar-item search">
+                    <form id="search_form" name="gs" method="GET" action="#">
+                      <input type="text" name="q" class="searchText" placeholder="type to search..." autocomplete="on">
+                    </form>
+                  </div>
+                </div>-->
+               
+                <div class="col-lg-12">
+                  <div class="sidebar-item recent-posts">
+                    <div class="sidebar-heading">
+                      <h2>Recent Posts</h2>
+                    </div>
+                    <div class="content">
+                      <ul>
+                      <% recents.forEach(blog => { %>
+                        <li><a href="/blogg/<%= blog.slug; %>">
+                          <h5><%= blog.title; %></h5>
+                          <span><%= blog.createdAt.toDateString(); %></span>
+                        </a></li><% }) %>
+                       </ul>
+                    </div>
+                  </div>
+                </div>
+                <!--<div class="col-lg-12">
+                  <div class="sidebar-item categories">
+                    <div class="sidebar-heading">
+                      <h2>Categories</h2>
+                    </div>
+                    <div class="content">
+                      <ul>
+                        <li><a href="#">- Nature Lifestyle</a></li>
+                        <li><a href="#">- Awesome Layouts</a></li>
+                        <li><a href="#">- Creative Ideas</a></li>
+                        <li><a href="#">- Responsive Templates</a></li>
+                        <li><a href="#">- HTML5 / CSS3 Templates</a></li>
+                        <li><a href="#">- Creative &amp; Unique</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-12">
+                  <div class="sidebar-item tags">
+                    <div class="sidebar-heading">
+                      <h2>Tag Clouds</h2>
+                    </div>
+                    <div class="content">
+                      <ul>
+                        <li><a href="#">Lifestyle</a></li>
+                        <li><a href="#">Creative</a></li>
+                        <li><a href="#">HTML5</a></li>
+                        <li><a href="#">Inspiration</a></li>
+                        <li><a href="#">Motivation</a></li>
+                        <li><a href="#">PSD</a></li>
+                        <li><a href="#">Responsive</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>-->
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        </div>
+      </div>
+    </section>             
+                            
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>                   
+<script>
+//window.addEventListener('load', thing => {
+                   
+                    //var y = document.querySelectorAll("#list> li").length
+                   //  document.getElementById("demo").innerHTML = y + " COMMENTS"
+                
+               //  })
+   </script>
+
+ <script>              
+$(document).ready(function() {
+  $('.replybutton').click(function() {
+    $(this).next('.reply').toggle();
+  });
+});
+</script>
+
+<style>
+
+
+
+.cart-item {
+  position: relative;
+  margin: 10px 0 30px 10px;
+  padding: 10px 50px 10px 10px;
+  background-color: #DCDCDC;
+  box-shadow: 0 12px 20px 1px rgba(64, 64, 64, .09);
+  border-radius: 1pc;
+}
+.cart-item .cart-item-label {
+  display: block;
+  margin-bottom: 15px;
+  color: #8c8c8c;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.cart-item .cart-item-product {
+  display: table;
+  width: 35rem;
+  text-decoration: none;
+}
+.cart-item .cart-item-product-thumb, .cart-item .cart-item-product-info {
+  display: table-cell;
+  vertical-align: top;
+}
+.cart-item .cart-item-product-thumb {
+  width: 100px;
+}
+.cart-item .cart-item-product-thumb > img {
+  display: block;
+  width: 90px;
+  height: 90px;
+  border-radius: 50pc;
+}
+  
+}
+.cart-item .cart-item-product-info {
+  padding-top: 5px;
+  padding-left: 15px;
+}
+.cart-item .cart-item-product-info > span {
+  display: block;
+  margin-bottom: 2px;
+  color: #404040;
+  font-size: 12px;
+}
+.cart-item .cart-item-product-title {
+  margin-bottom: 8px;
+  transition: color, 0.3s;
+  color: #343b43;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.cart-item .count-input {
+  display: inline-block;
+  width: 85px;
+}
+
+@media (max-width: 991px) {
+  .cart-item {
+    padding-right: 30px;
+  }
+  .cart-item .cart-item-product {
+    width: auto;
+  }
+}
+@media (max-width: 768px) {
+  .cart-item {
+    padding-right: 10px;
+    padding-bottom: 15px;
+  }
+  .cart-item .cart-item-product {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  .cart-item .cart-item-product-thumb, .cart-item .cart-item-product-info {
+    display: block;
+  }
+  .cart-item .cart-item-product-thumb {
+    margin: 0 auto 10px;
+  }
+  .cart-item .cart-item-product-info {
+    padding-left: 0;
+  }
+  .cart-item .cart-item-label {
+    margin-bottom: 8px;
+  }
+}
+.comparison-table {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.comparison-table table {
+  min-width: 750px;
+  table-layout: fixed;
+}
+.comparison-table .comparison-item {
+  position: relative;
+  margin-bottom: 10px;
+  padding: 13px 12px 18px;
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 0 12px 20px 1px rgba(64, 64, 64, .09);
+}
+.comparison-table .comparison-item .comparison-item-thumb {
+  display: block;
+  width: 80px;
+  margin-right: auto;
+  margin-bottom: 12px;
+  margin-left: auto;
+}
+.comparison-table .comparison-item .comparison-item-thumb > img {
+  display: block;
+  width: 100%;
+}
+.comparison-table .comparison-item .comparison-item-title {
+  display: block;
+  margin-bottom: 14px;
+  transition: color 0.25s;
+  color: #404040;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.comparison-table .comparison-item .comparison-item-title:hover {
+  color: #ac32e4;
+}
+.remove-item {
+  display: block;
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 22px;
+  height: 22px;
+  padding-left: 1px;
+  border-radius: 50%;
+  background-color: #ff5252;
+  color: #fff;
+  line-height: 23px;
+  text-align: center;
+  box-shadow: 0 3px 12px 0 rgba(255, 82, 82, .5);
+  cursor: pointer;
+}
+.card-wrapper {
+  margin: 30px -15px;
+}
+@media (max-width: 576px) {
+  .card-wrapper .jp-card-container {
+    width: 260px !important;
+  }
+  .card-wrapper .jp-card {
+    min-width: 250px !important;
+  }
+}
+
+</style>
+
+    <%- include ('_layouts/blogfoot'); %>

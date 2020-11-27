@@ -1,0 +1,9 @@
+<%- include ('adminlook'); %>
+
+<div class="container">
+	<h1 class="mb-4"> Edit Writer Details</h1>
+		<form action="/admin/author/<%= author.id; %>?_method=PUT" Method="POST">
+		<%- include ('_authaform'); %>
+
+		</form>
+</div>
